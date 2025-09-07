@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% block title %}HOME{% endblock title %}
+{% block body %}
+<div class='text-center h1'>URL Shortner</div>
+    <div class="mb-3 h-full my-5 py-5">
+        <div class="row g-0 w-full h-full justify-content-center">
+            <div class="col-md-8 flex-d fled-row">
+                <div class="card-body row">
+                    <form class="d-flex" method='POST' action='#'>
+                        <input class="form-control me-2" type="url"
+                        placeholder="https://www.example.com"
+                        pattern="https://.*" size="50" name='url'      
+                        />
+                        <button class="btn btn-outline-success" type="submit">Short</button>
+                    </form>
+                </div>
+                <div class='row w-full'>
+                    <ul class="list-group justify-content-center">
+                        {% if url %}<li class="list-group-item text-center"><a href='{{ url }}' target="_blank"> {{ url }} </a></li>{% endif %}
+                    </ul>                
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

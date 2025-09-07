@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>URL-shortner | {% block title %}{% endblock title %}</title>
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+  </head>
+  <body class=''>
+  
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div class='container shadow p-3 my-5'>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+        <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link {% if request.path.startswith('/list') %}active{% endif %}" href="/list">All urls</a>
+        </li>
+      </ul>
+    </div>
+    <div class='container shadow-sm my-2 p-auto'>
+        {% block body %}{% endblock body %}
+    </div>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+  </body>
+</html>
